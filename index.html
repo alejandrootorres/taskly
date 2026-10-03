@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#6366f1"
+    >
+
+    <title>Taskly</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="styles/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ==================================================
+         APP
+    =================================================== -->
+
+    <div class="app">
+
+        <!-- ==================================================
+             SIDEBAR
+        =================================================== -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <div class="sidebar-header">
+
+                <div class="brand">
+
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+
+                    <span>
+                        Taskly
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="icon-button close-sidebar"
+                    id="closeSidebar"
+                    aria-label="Cerrar menú"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <!-- PERFIL PEQUEÑO -->
+
+            <button
+                class="mini-profile"
+                id="miniProfile"
+            >
+
+                <div
+                    class="avatar small"
+                    id="sidebarAvatar"
+                >
+                    A
+                </div>
+
+                <div class="mini-profile-info">
+
+                    <strong id="sidebarName">
+                        Alex
+                    </strong>
+
+                    <span id="sidebarUsername">
+                        @alex
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+            <!-- NAVEGACIÓN -->
+
+            <nav class="navigation">
+
+                <span class="navigation-label">
+                    PRINCIPAL
+                </span>
+
+
+                <button
+                    class="nav-item active"
+                    data-section="inicio"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Inicio
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-section="tareas"
+                >
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                    <span>
+                        Mis tareas
+                    </span>
+
+                    <span
+                        class="nav-count"
+                        id="navTaskCount"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-section="hoy"
+                >
+
+                    <i class="fa-solid fa-calendar-day"></i>
+
+                    <span>
+                        Hoy
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-section="importantes"
+                >
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <span>
+                        Importantes
+                    </span>
+
+                </button>
+
+
+                <span class="navigation-label">
+                    PRODUCTIVIDAD
+                </span>
+
+
+                <button
+                    class="nav-item"
+                    data-section="estadisticas"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Estadísticas
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-section="categorias"
+                >
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    <span>
+                        Categorías
+                    </span>
+
+                </button>
+
+
+                <span class="navigation-label">
+                    CUENTA
+                </span>
+
+
+                <button
+                    class="nav-item"
+                    data-section="perfil"
+                >
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span>
+                        Mi perfil
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-section="configuracion"
+                >
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>
+                        Configuración
+                    </span>
+
+                </button>
+
+            </nav>
+
+
+            <!-- SIDEBAR FOOTER -->
+
+            <div class="sidebar-footer">
+
+                <div class="productivity-box">
+
+                    <div class="productivity-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Productividad
+                        </strong>
+
+                        <span id="productivityText">
+                            0% completado
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="app-version">
+                    Taskly v2.0
+                </span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ==================================================
+             MAIN
+        =================================================== -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button
+                    class="icon-button menu-button"
+                    id="openSidebar"
+                    aria-label="Abrir menú"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="topbar-heading">
+
+                    <span id="topbarDate">
+                        Hoy
+                    </span>
+
+                    <h1 id="pageTitle">
+                        Mi día
+                    </h1>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <!-- BÚSQUEDA -->
+
+                    <button
+                        class="icon-button"
+                        id="searchButton"
+                        aria-label="Buscar"
+                    >
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </button>
+
+
+                    <!-- NOTIFICACIONES -->
+
+                    <button
+                        class="icon-button notification-button"
+                        id="notificationButton"
+                        aria-label="Notificaciones"
+                    >
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span
+                            class="notification-dot"
+                            id="notificationDot"
+                        ></span>
+
+                    </button>
+
+
+                    <!-- PERFIL -->
+
+                    <button
+                        class="topbar-profile"
+                        id="topbarProfile"
+                    >
+
+                        <div
+                            class="avatar"
+                            id="topbarAvatar"
+                        >
+                            A
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- BARRA DE BÚSQUEDA -->
+
+            <div
+                class="search-panel"
+                id="searchPanel"
+            >
+
+                <div class="search-input-wrapper">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Buscar tareas..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="closeSearch"
+                        class="search-close"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENIDO -->
+
+            <div class="content">
+
+
+                <!-- ==================================================
+                     INICIO
+                =================================================== -->
+
+                <section
+                    class="page-section active"
+                    id="section-inicio"
+                >
+
+                    <div class="welcome-section">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                TU ESPACIO PERSONAL
+                            </span>
+
+                            <h2>
+                                Hola,
+                                <span id="welcomeName">
+                                    Alex
+                                </span>.
+                            </h2>
+
+                            <p>
+                                Organiza tus tareas,
+                                alcanza tus objetivos
+                                y aprovecha tu día.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            id="newTaskButton"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Nueva tarea
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- ESTADÍSTICAS -->
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon blue">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+
+                            <div class="stat-info">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <strong id="totalTasks">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon green">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <div class="stat-info">
+
+                                <span>
+                                    Completadas
+                                </span>
+
+                                <strong id="completedTasks">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon orange">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+
+                            <div class="stat-info">
+
+                                <span>
+                                    Pendientes
+                                </span>
+
+                                <strong id="pendingTasks">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon purple">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                            <div class="stat-info">
+
+                                <span>
+                                    Importantes
+                                </span>
+
+                                <strong id="importantTasks">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROGRESO -->
+
+                    <div class="dashboard-grid">
+
+                        <div class="panel progress-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        PROGRESO
+                                    </span>
+
+                                    <h3>
+                                        Productividad
+                                    </h3>
+
+                                </div>
+
+                                <span
+                                    class="progress-percentage"
+                                    id="progressPercentage"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-circle-wrapper">
+
+                                <div
+                                    class="progress-circle"
+                                    id="progressCircle"
+                                >
+
+                                    <div>
+
+                                        <strong
+                                            id="progressCircleText"
+                                        >
+                                            0%
+                                        </strong>
+
+                                        <span>
+                                            completado
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="progress-details">
+
+                                    <div class="progress-detail">
+
+                                        <span>
+                                            Completadas
+                                        </span>
+
+                                        <strong id="progressCompleted">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="progress-detail">
+
+                                        <span>
+                                            Pendientes
+                                        </span>
+
+                                        <strong id="progressPending">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RACHA -->
+
+                        <div class="panel streak-panel">
+
+                            <div class="streak-top">
+
+                                <div class="streak-icon">
+                                    <i class="fa-solid fa-fire"></i>
+                                </div>
+
+                                <span>
+                                    RACHA
+                                </span>
+
+                            </div>
+
+                            <strong
+                                class="streak-number"
+                                id="streakNumber"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                días consecutivos
+                            </p>
+
+                            <div class="streak-bar">
+
+                                <div
+                                    id="streakProgress"
+                                ></div>
+
+                            </div>
+
+                            <small>
+                                Sigue completando tareas
+                                para mantener tu racha.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TAREAS RECIENTES -->
+
+                    <div class="panel tasks-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="eyebrow">
+                                    ACTIVIDAD
+                                </span>
+
+                                <h3>
+                                    Tareas recientes
+                                </h3>
+
+                            </div>
+
+                            <button
+                                class="text-button"
+                                data-section="tareas"
+                            >
+                                Ver todas
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="task-list"
+                            id="taskList"
+                        ></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     TAREAS
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-tareas"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                ORGANIZACIÓN
+                            </span>
+
+                            <h2>
+                                Mis tareas
+                            </h2>
+
+                            <p>
+                                Administra todo lo que
+                                tienes pendiente.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            id="newTaskButton2"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Nueva tarea
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="task-toolbar">
+
+                        <div class="filter-buttons">
+
+                            <button
+                                class="filter-button active"
+                                data-filter="all"
+                            >
+                                Todas
+                            </button>
+
+                            <button
+                                class="filter-button"
+                                data-filter="pending"
+                            >
+                                Pendientes
+                            </button>
+
+                            <button
+                                class="filter-button"
+                                data-filter="completed"
+                            >
+                                Completadas
+                            </button>
+
+                        </div>
+
+
+                        <select
+                            id="sortTasks"
+                            class="sort-select"
+                        >
+
+                            <option value="newest">
+                                Más recientes
+                            </option>
+
+                            <option value="oldest">
+                                Más antiguas
+                            </option>
+
+                            <option value="priority">
+                                Prioridad
+                            </option>
+
+                            <option value="date">
+                                Fecha
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        class="task-list"
+                        id="allTaskList"
+                    ></div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     HOY
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-hoy"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PLAN DEL DÍA
+                            </span>
+
+                            <h2>
+                                Hoy
+                            </h2>
+
+                            <p>
+                                Estas son tus tareas para hoy.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="task-list"
+                        id="todayTaskList"
+                    ></div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     IMPORTANTES
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-importantes"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PRIORIDAD
+                            </span>
+
+                            <h2>
+                                Importantes
+                            </h2>
+
+                            <p>
+                                Tus tareas prioritarias.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="task-list"
+                        id="importantTaskList"
+                    ></div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     ESTADÍSTICAS
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-estadisticas"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PRODUCTIVIDAD
+                            </span>
+
+                            <h2>
+                                Estadísticas
+                            </h2>
+
+                            <p>
+                                Mira cómo estás avanzando.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-large-grid">
+
+                        <div class="large-stat">
+
+                            <span>
+                                Total de tareas
+                            </span>
+
+                            <strong id="statsTotal">
+                                0
+                            </strong>
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                        </div>
+
+
+                        <div class="large-stat">
+
+                            <span>
+                                Completadas
+                            </span>
+
+                            <strong id="statsCompleted">
+                                0
+                            </strong>
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </div>
+
+
+                        <div class="large-stat">
+
+                            <span>
+                                Pendientes
+                            </span>
+
+                            <strong id="statsPending">
+                                0
+                            </strong>
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </div>
+
+
+                        <div class="large-stat">
+
+                            <span>
+                                Tasa de éxito
+                            </span>
+
+                            <strong id="statsRate">
+                                0%
+                            </strong>
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="statistics-grid">
+
+                        <div class="panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        RESUMEN
+                                    </span>
+
+                                    <h3>
+                                        Estado de tareas
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="chart">
+
+                                <div class="chart-bar">
+
+                                    <div
+                                        class="bar"
+                                        id="completedBar"
+                                    ></div>
+
+                                    <span>
+                                        Completadas
+                                    </span>
+
+                                </div>
+
+
+                                <div class="chart-bar">
+
+                                    <div
+                                        class="bar pending"
+                                        id="pendingBar"
+                                    ></div>
+
+                                    <span>
+                                        Pendientes
+                                    </span>
+
+                                </div>
+
+
+                                <div class="chart-bar">
+
+                                    <div
+                                        class="bar important"
+                                        id="importantBar"
+                                    ></div>
+
+                                    <span>
+                                        Importantes
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="eyebrow">
+                                        LOGROS
+                                    </span>
+
+                                    <h3>
+                                        Tu progreso
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="achievement-list">
+
+                                <div class="achievement">
+
+                                    <div class="achievement-icon">
+                                        <i class="fa-solid fa-seedling"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Primer paso
+                                        </strong>
+
+                                        <span>
+                                            Crea tu primera tarea.
+                                        </span>
+
+                                    </div>
+
+                                    <i
+                                        class="fa-solid fa-check achievement-check"
+                                        id="achievementFirst"
+                                    ></i>
+
+                                </div>
+
+
+                                <div class="achievement">
+
+                                    <div class="achievement-icon">
+                                        <i class="fa-solid fa-fire"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            En marcha
+                                        </strong>
+
+                                        <span>
+                                            Completa 5 tareas.
+                                        </span>
+
+                                    </div>
+
+                                    <i
+                                        class="fa-solid fa-check achievement-check"
+                                        id="achievementFive"
+                                    ></i>
+
+                                </div>
+
+
+                                <div class="achievement">
+
+                                    <div class="achievement-icon">
+                                        <i class="fa-solid fa-trophy"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Productivo
+                                        </strong>
+
+                                        <span>
+                                            Completa 10 tareas.
+                                        </span>
+
+                                    </div>
+
+                                    <i
+                                        class="fa-solid fa-check achievement-check"
+                                        id="achievementTen"
+                                    ></i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     CATEGORÍAS
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-categorias"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                ORGANIZACIÓN
+                            </span>
+
+                            <h2>
+                                Categorías
+                            </h2>
+
+                            <p>
+                                Organiza tus tareas por áreas.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            id="newCategoryButton"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Nueva categoría
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="categories-grid"
+                        id="categoriesGrid"
+                    ></div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     PERFIL
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-perfil"
+                >
+
+                    <div class="profile-page">
+
+                        <div class="profile-cover">
+
+                            <div class="profile-cover-pattern">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-main">
+
+                            <div class="profile-avatar-wrapper">
+
+                                <div
+                                    class="profile-avatar"
+                                    id="profileAvatar"
+                                >
+                                    A
+                                </div>
+
+                                <button
+                                    class="avatar-edit"
+                                    id="avatarEditButton"
+                                    title="Cambiar avatar"
+                                >
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+
+                            </div>
+
+
+                            <div class="profile-details">
+
+                                <h2 id="profileName">
+                                    Alex
+                                </h2>
+
+                                <span id="profileUsername">
+                                    @alex
+                                </span>
+
+                                <p id="profileBio">
+                                    Organizando mis ideas
+                                    y construyendo mis objetivos.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                class="secondary-button"
+                                id="editProfileButton"
+                            >
+
+                                <i class="fa-solid fa-pen"></i>
+
+                                Editar perfil
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="profile-stats">
+
+                            <div>
+
+                                <strong id="profileTaskCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Tareas
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong id="profileCompletedCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Completadas
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong id="profileStreak">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Días de racha
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     CONFIGURACIÓN
+                =================================================== -->
+
+                <section
+                    class="page-section"
+                    id="section-configuracion"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PREFERENCIAS
+                            </span>
+
+                            <h2>
+                                Configuración
+                            </h2>
+
+                            <p>
+                                Personaliza Taskly a tu gusto.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-layout">
+
+                        <!-- APARIENCIA -->
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Apariencia
+                                    </h3>
+
+                                    <p>
+                                        Personaliza cómo se ve Taskly.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="setting-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Tema oscuro
+                                    </strong>
+
+                                    <span>
+                                        Cambia entre modo claro y oscuro.
+                                    </span>
+
+                                </div>
+
+
+                                <label class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="darkMode"
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="setting-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Color principal
+                                    </strong>
+
+                                    <span>
+                                        Elige el color de Taskly.
+                                    </span>
+
+                                </div>
+
+
+                                <div class="color-options">
+
+                                    <button
+                                        class="color-option active"
+                                        data-color="#6366f1"
+                                        style="--color: #6366f1;"
+                                    ></button>
+
+                                    <button
+                                        class="color-option"
+                                        data-color="#3b82f6"
+                                        style="--color: #3b82f6;"
+                                    ></button>
+
+                                    <button
+                                        class="color-option"
+                                        data-color="#10b981"
+                                        style="--color: #10b981;"
+                                    ></button>
+
+                                    <button
+                                        class="color-option"
+                                        data-color="#f59e0b"
+                                        style="--color: #f59e0b;"
+                                    ></button>
+
+                                    <button
+                                        class="color-option"
+                                        data-color="#ec4899"
+                                        style="--color: #ec4899;"
+                                    ></button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- NOTIFICACIONES -->
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Notificaciones
+                                    </h3>
+
+                                    <p>
+                                        Controla tus avisos.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="setting-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Notificaciones
+                                    </strong>
+
+                                    <span>
+                                        Mostrar avisos dentro de la app.
+                                    </span>
+
+                                </div>
+
+
+                                <label class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="notificationsEnabled"
+                                        checked
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="setting-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Animaciones
+                                    </strong>
+
+                                    <span>
+                                        Activar efectos visuales.
+                                    </span>
+
+                                </div>
+
+
+                                <label class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="animationsEnabled"
+                                        checked
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DATOS -->
+
+                        <div class="settings-card">
+
+                            <div class="settings-card-header">
+
+                                <div class="settings-card-icon">
+                                    <i class="fa-solid fa-database"></i>
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Datos
+                                    </h3>
+
+                                    <p>
+                                        Administra tus datos locales.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="setting-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Exportar datos
+                                    </strong>
+
+                                    <span>
+                                        Descarga una copia de tus tareas.
+                                    </span>
+
+                                </div>
+
+
+                                <button
+                                    class="small-button"
+                                    id="exportDataButton"
+                                >
+                                    Exportar
+                                </button>
+
+                            </div>
+
+
+                            <div class="setting-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Restaurar configuración
+                                    </strong>
+
+                                    <span>
+                                        Volver a los valores originales.
+                                    </span>
+
+                                </div>
+
+
+                                <button
+                                    class="small-button"
+                                    id="resetSettingsButton"
+                                >
+                                    Restaurar
+                                </button>
+
+                            </div>
+
+
+                            <div class="setting-row danger-row">
+
+                                <div class="setting-info">
+
+                                    <strong>
+                                        Eliminar todos los datos
+                                    </strong>
+
+                                    <span>
+                                        Borra tareas, perfil y configuración.
+                                    </span>
+
+                                </div>
+
+
+                                <button
+                                    class="danger-button"
+                                    id="deleteAllDataButton"
+                                >
+                                    Eliminar todo
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ==================================================
+         OVERLAY
+    =================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+    <!-- ==================================================
+         MODAL DE TAREA
+    =================================================== -->
+
+    <div
+        class="modal"
+        id="taskModal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        NUEVA TAREA
+                    </span>
+
+                    <h2>
+                        Crear tarea
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="icon-button"
+                    id="closeTaskModal"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <form id="taskForm">
+
+                <div class="form-group">
+
+                    <label for="taskTitle">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskTitle"
+                        placeholder="Ej. Estudiar JavaScript"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="taskDate">
+                            Fecha
+                        </label>
+
+                        <input
+                            type="date"
+                            id="taskDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="taskPriority">
+                            Prioridad
+                        </label>
+
+                        <select id="taskPriority">
+
+                            <option value="normal">
+                                Normal
+                            </option>
+
+                            <option value="important">
+                                Importante
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="taskCategory">
+                        Categoría
+                    </label>
+
+                    <select id="taskCategory">
+
+                        <option value="personal">
+                            Personal
+                        </option>
+
+                        <option value="estudio">
+                            Estudio
+                        </option>
+
+                        <option value="trabajo">
+                            Trabajo
+                        </option>
+
+                        <option value="proyecto">
+                            Proyecto
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="taskDescription">
+                        Descripción
+                    </label>
+
+                    <textarea
+                        id="taskDescription"
+                        rows="4"
+                        placeholder="Añade algunos detalles..."
+                        maxlength="300"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelTask"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Crear tarea
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODAL PERFIL
+    =================================================== -->
+
+    <div
+        class="modal"
+        id="profileModal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        MI CUENTA
+                    </span>
+
+                    <h2>
+                        Editar perfil
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="icon-button"
+                    id="closeProfileModal"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <form id="profileForm">
+
+                <div class="profile-editor-avatar">
+
+                    <div
+                        class="profile-avatar editor"
+                        id="editorAvatar"
+                    >
+                        A
+                    </div>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="randomAvatarButton"
+                    >
+
+                        <i class="fa-solid fa-shuffle"></i>
+
+                        Cambiar avatar
+
+                    </button>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="profileNameInput">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileNameInput"
+                        maxlength="40"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="profileUsernameInput">
+                        Usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileUsernameInput"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="profileBioInput">
+                        Biografía
+                    </label>
+
+                    <textarea
+                        id="profileBioInput"
+                        rows="3"
+                        maxlength="160"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelProfile"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Guardar cambios
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODAL CATEGORÍA
+    =================================================== -->
+
+    <div
+        class="modal"
+        id="categoryModal"
+    >
+
+        <div class="modal-content small-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ORGANIZACIÓN
+                    </span>
+
+                    <h2>
+                        Nueva categoría
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="icon-button"
+                    id="closeCategoryModal"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <form id="categoryForm">
+
+                <div class="form-group">
+
+                    <label for="categoryName">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="categoryName"
+                        placeholder="Ej. Programación"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelCategory"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Crear
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         PANEL DE NOTIFICACIONES
+    =================================================== -->
+
+    <div
+        class="notifications-panel"
+        id="notificationsPanel"
+    >
+
+        <div class="notifications-header">
+
+            <div>
+
+                <strong>
+                    Notificaciones
+                </strong>
+
+                <span>
+                    Actividad reciente
+                </span>
+
+            </div>
+
+
+            <button
+                class="icon-button"
+                id="closeNotifications"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="notifications-list"
+            id="notificationsList"
+        ></div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TOAST
+    =================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+
+        <div class="toast-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+        <div>
+
+            <strong id="toastTitle">
+                Listo
+            </strong>
+
+            <span id="toastMessage">
+                Acción realizada.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="scripts/script.js"></script>
+
+</body>
+
+</html>
